@@ -6,34 +6,37 @@
     <title>Voice Chatbot</title>
     <link rel="stylesheet" href="botstyle.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/onion-speech/onion-speech.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/onion-speech/onion-speech.min.js"></script>
 </head>
 
 <body>
-    <div class="icon" onclick="togglechat()">
-        <img src="bot.png" alt="bot"> 
+
+    <div class="chatbot-icon" onclick="toggleChat()">
+        <img src="bot.jpeg" alt="bot">
     </div>
 
     <div class="chatbot" id="c1">
-        <div class="chat-header"> 
-            <span> CHATBOT </span>
+
+        <div class="chat-header">
+            <span>CHATBOT</span>
 
             <div class="header-icons">
-                <i class="bi bi-arrows-fullscreen icon"></i>
-                <i class="bi bi-gear-fill icon"></i>
-                <i class="bi bi-x-lg icon" onclick="toggleChat()"></i>
+                <i class="bi bi-arrows-fullscreen header-icon"></i>
+                <i class="bi bi-gear-fill header-icon"></i>
+                <i class="bi bi-x-lg header-icon" onclick="toggleChat()"></i>
             </div>
         </div>
 
-        <div class="chat-body" id="chatbody">
-            <div class="bmssg"> Hi there! How can I help you? </div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">Hi there! How can I help you?</div>
         </div>
 
         <div class="chat-input">
-            <input type="text" id="userinput" placeholder="Ask Chatbot.."
-            onkeydown="if(event.key==='Enter') sendMsg()">
-        
+
+            <input type="text" id="userInput"
+                   placeholder="Ask Chatbot..."
+                   onkeydown="if(event.key==='Enter') sendMsg()">
+
             <button class="mic-btn" onclick="startListening()">
                 <i class="bi bi-mic-fill" id="micIcon"></i>
             </button>
@@ -41,10 +44,11 @@
             <button class="send-btn" onclick="sendMsg()">
                 <i class="bi bi-send-fill"></i>
             </button>
-        </div>
-    </div>
 
-    <script src="chat.js"> </script>
+        </div>
+
+    </div>
+    <script src="chat.js"></script>
 
 </body>
 </html>
