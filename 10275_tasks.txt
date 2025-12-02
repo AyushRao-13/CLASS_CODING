@@ -1,3 +1,0 @@
-project::High
-est::Medium
-assignment::Low
