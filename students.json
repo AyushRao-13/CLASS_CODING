@@ -1,0 +1,288 @@
+[
+    {
+        "rollno": "25IMC13004",
+        "name": "Ayush",
+        "student_class": "25MAM-2",
+        "section": "A",
+        "subjects": [
+            "Python",
+            "ADBMS",
+            "DAA",
+            "AI"
+        ],
+        "marks": [
+            "98.0",
+            "95.0",
+            "92.0",
+            "96.0"
+        ],
+        "image_filename": "images\\25IMC13004.PNG"
+    },
+    {
+        "rollno": "25MCI10001",
+        "name": "Amit",
+        "student_class": "25MAM-1",
+        "section": "A",
+        "subjects": [
+            "Python",
+            "ADBMS",
+            "DAA",
+            "AI"
+        ],
+        "marks": [
+            "90.0",
+            "89.0",
+            "90.0",
+            "82.0"
+        ],
+        "image_filename": "images\\25MCI10001.PNG"
+    },
+    {
+        "rollno": "25IMC10275",
+        "name": "Rydem",
+        "student_class": "25MAM-1",
+        "section": "B",
+        "subjects": [
+            "Python",
+            "DAA",
+            "ADBMS",
+            "AI"
+        ],
+        "marks": [
+            "80.0",
+            "88.0",
+            "87.0",
+            "90.0"
+        ],
+        "image_filename": "images\\25IMC10275.png"
+    },
+    {
+        "rollno": "101",
+        "name": "A",
+        "student_class": "25MCA",
+        "section": "B",
+        "subjects": [
+            "Python",
+            "DAA",
+            "LInux",
+            "ADBMS"
+        ],
+        "marks": [
+            "90.0",
+            "85.0",
+            "80.0",
+            "78.0"
+        ],
+        "image_filename": "images\\101.png"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    },
+    {
+        "Name": "RYDEM",
+        "Math": "78",
+        "Science": "65",
+        "English": "89",
+        "Grade": "A"
+    }
+]

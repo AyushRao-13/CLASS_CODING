@@ -1,0 +1,3 @@
+Soona::High
+Khana::Medium
+Fhir Soona::Low

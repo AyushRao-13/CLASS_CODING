@@ -1,0 +1,3 @@
+Python Assignment::High
+EST Prep::Medium
+Forms::Low
