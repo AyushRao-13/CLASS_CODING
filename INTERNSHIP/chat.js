@@ -3,37 +3,40 @@ function toggleChat() {
     box.style.display = (box.style.display === "flex") ? "none" : "flex";
 }
 
-let listening = false;
 
-const recognizer = new OnionSpeech({
-    lang: "en-US",
-    continuous: false,
-    interimResults: false
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const chatbox = document.getElementById("c1");
+
+fullscreenBtn.addEventListener("click", () => {
+    chatbox.classList.toggle("fullscreen");
+
+    if (chatbox.classList.contains("fullscreen")) {
+        fullscreenBtn.classList.remove("bi-arrows-fullscreen");
+        fullscreenBtn.classList.add("bi-fullscreen-exit");
+    } else {
+        fullscreenBtn.classList.remove("bi-fullscreen-exit");
+        fullscreenBtn.classList.add("bi-arrows-fullscreen");
+    }
 });
 
 function startListening() {
     const micBtn = document.querySelector(".mic-btn");
+    const micIcon = document.getElementById("micIcon");
 
-    if (!listening) {
-        listening = true;
-        micBtn.classList.add("listening");
-        recognizer.start();
+    micBtn.classList.add("listening");
+   
 
-        recognizer.onresult = (text) => {
-            document.getElementById("userInput").value = text;
-            sendMsg();
-        };
+    annyang.start();
 
-        recognizer.onend = () => {
-            listening = false;
-            micBtn.classList.remove("listening");
-        };
+    annyang.addCallback("result", (phrases) => {
+        document.getElementById("userInput").value = phrases[0];
+        sendMsg();
+    });
 
-    } else {
-        recognizer.stop();
-        listening = false;
+    annyang.addCallback("end", () => {
         micBtn.classList.remove("listening");
-    }
+       
+    });
 }
 
 function sendMsg() {
