@@ -1,0 +1,120 @@
+/* 🌌 Modern Chat Body (Glass + Soft Gradient) */
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #111827 0%, #0d1117 100%);
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Smooth scrollbar */
+.chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-body::-webkit-scrollbar-thumb {
+    background: rgba(148,163,184,0.4);
+    border-radius: 4px;
+}
+.chat-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(203,213,225,0.6);
+}
+
+/* 📌 Headings inside bot messages */
+.bot-message h1,
+.bot-message h2,
+.bot-message h3 {
+    margin: 6px 0;
+    font-weight: 700;
+    color: #60a5fa; /* soft blue accent */
+    text-shadow: 0 0 6px rgba(96,165,250,0.5);
+}
+
+.bot-message h1 { font-size: 20px; }
+.bot-message h2 { font-size: 18px; }
+.bot-message h3 { font-size: 16px; }
+
+/* ✨ Lists inside bot messages */
+.bot-message ul {
+    padding-left: 18px;
+    margin-top: 8px;
+}
+.bot-message ul li {
+    margin-bottom: 6px;
+    color: #cbd5e1;
+}
+
+/* 🟦 Bot Message — upgraded style */
+.bot-message {
+    background: rgba(51, 65, 85, 0.65);
+    border: 1px solid rgba(148,163,184,0.2);
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    max-width: 85%;
+    align-self: flex-start;
+
+    /* fade animation */
+    animation: fadeIn 0.25s ease;
+}
+
+/* 🟦 User Message — upgraded gradient bubble */
+.user-message {
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    color: white;
+    border-radius: 14px;
+    padding: 14px 18px;
+    max-width: 85%;
+    align-self: flex-end;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+
+    animation: fadeIn 0.25s ease;
+}
+
+/* ✨ Fade animation for messages */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 💬 Better text inside bot messages */
+.bot-message p {
+    margin-bottom: 8px;
+    color: #e5e7eb;
+}
+
+/* 🔥 Highlight text (bot emphasis) */
+.bot-message strong {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* 🟣 Code block styling */
+.bot-message code {
+    background: rgba(255,255,255,0.1);
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #93c5fd;
+}
+
+/* 🟡 Blockquote / notes */
+.bot-message blockquote {
+    border-left: 3px solid #38bdf8;
+    padding-left: 10px;
+    margin-left: 6px;
+    color: #cbd5e1;
+    font-style: italic;
+}
+
+/* 📌 Divider inside messages */
+.bot-message hr {
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin: 10px 0;
+}
