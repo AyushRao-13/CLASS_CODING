@@ -111,6 +111,8 @@ async function sendMsg() {
 
     const reply = await sendToFlask(text);
 
-    body.innerHTML += `<div class='bot-message'>${reply}</div>`;
-    body.scrollTop = body.scrollHeight;
+    setTimeout(() => {
+        body.innerHTML += `<div class='bot-message'>${reply}</div>`;
+        body.scrollTop = body.scrollHeight;
+    }, 400);
 }
