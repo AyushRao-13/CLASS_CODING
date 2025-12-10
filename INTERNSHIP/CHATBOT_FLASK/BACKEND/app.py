@@ -8,9 +8,6 @@ CORS(app)
 def chat():
     data = request.get_json()
     user_text = data.get("text", "")
-    
     reply = f"You said: {user_text}"
-
     return jsonify({"reply": reply})
-
 app.run(debug=True)
