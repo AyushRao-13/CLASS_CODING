@@ -98,6 +98,31 @@ async function sendToFlask(text) {
     }
 }
 
+// 🔐 Trigger forensic scripts via backend (Node / Flask gateway)
+async function runForensics(os = "windows") {
+    const body = document.getElementById("chatBody");
+
+    body.innerHTML += `<div class='bot-message'>🕵️ Starting forensic capture (${os})...</div>`;
+    body.scrollTop = body.scrollHeight;
+
+    try {
+        const res = await fetch("http://127.0.0.1:3000/run-forensics", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ os })
+        });
+
+        const data = await res.json();
+
+        body.innerHTML += `<div class='bot-message'>✅ ${data.message}</div>`;
+    } catch (err) {
+        body.innerHTML += `<div class='bot-message'>⚠️ Failed to start forensic capture</div>`;
+    }
+
+    body.scrollTop = body.scrollHeight;
+}
+
+
 async function sendMsg() {
     const input = document.getElementById("userInput");
     const body = document.getElementById("chatBody");
