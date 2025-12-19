@@ -70,8 +70,19 @@ function Chatbot() {
       continuous: false,
     });
 
+    window.annyang.removeCallback("result"); // 🔥 IMPORTANT: prevent duplicates
+
     window.annyang.addCallback("result", (phrases) => {
-      setInput(phrases[0]);
+      const spokenText = phrases[0];
+
+      // 🔥 AUTO-SEND VOICE MESSAGE
+      setMessages((prev) => [
+        ...prev,
+        { from: "user", text: spokenText },
+        { from: "bot", text: "I received: " + spokenText },
+      ]);
+
+      setInput("");
       stopListening();
     });
 
@@ -81,7 +92,6 @@ function Chatbot() {
     stopListening();
   }
 };
-
 
   return (
     <>
