@@ -3,22 +3,28 @@ import "../styles/chatbot.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Chatbot() {
+  /* ---------------- STATE ---------------- */
   const [isOpen, setIsOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [messages, setMessages] = useState([
     { from: "bot", text: "Hi there! How can I help you?" },
   ]);
   const [input, setInput] = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const [os, setOs] = useState("linux");
+
   const chatBodyRef = useRef(null);
 
-  // Auto-scroll to bottom when message updates
+  /* ---------------- EFFECTS ---------------- */
+
+  // Auto-scroll messages
   useEffect(() => {
     if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop =
-        chatBodyRef.current.scrollHeight;
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Load annyang (speech recognition)
+  // Load annyang
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -26,89 +32,113 @@ function Chatbot() {
     script.async = true;
     document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
+    return () => document.body.removeChild(script);
   }, []);
+
+  /* ---------------- CHAT FUNCTIONS ---------------- */
 
   const toggleChat = () => {
     setIsOpen((prev) => !prev);
+    setIsFullscreen(false); // reset fullscreen on close
   };
 
-  const sendMsg = () => {
-    if (!input.trim()) return;
+  const toggleFullscreen = () => {
+    setIsFullscreen((prev) => !prev);
+  };
 
-    setMessages((prev) => [
-      ...prev,
-      { from: "user", text: input },
-      { from: "bot", text: "I received: " + input },
-    ]);
+  const sendMsg = async (textFromVoice = null) => {
+    const msg = textFromVoice ?? input;
+    if (!msg.trim()) return;
 
+    setMessages((prev) => [...prev, { from: "user", text: msg }]);
     setInput("");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: msg.toLowerCase(),
+          os: os,
+        }),
+      });
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        { from: "bot", text: data.reply },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { from: "bot", text: "⚠️ Backend not reachable." },
+      ]);
+    }
   };
 
-  const [isListening, setIsListening] = useState(false);
+  /* ---------------- MIC FUNCTIONS ---------------- */
 
   const stopListening = () => {
     if (window.annyang) {
-      window.annyang.abort(); // HARD STOP mic
+      window.annyang.abort();
       window.annyang.removeCallback("result");
     }
     setIsListening(false);
   };
 
   const toggleListening = () => {
-  if (!window.annyang) {
-    alert("Speech recognition not supported");
-    return;
-  }
+    if (!window.annyang) {
+      alert("Speech recognition not supported");
+      return;
+    }
 
-  if (!isListening) {
-    // START listening
-    window.annyang.start({
-      autoRestart: false,
-      continuous: false,
-    });
+    if (!isListening) {
+      window.annyang.start({ autoRestart: false, continuous: false });
+      window.annyang.removeCallback("result");
 
-    window.annyang.removeCallback("result"); // 🔥 IMPORTANT: prevent duplicates
+      window.annyang.addCallback("result", (phrases) => {
+        sendMsg(phrases[0]);
+        stopListening();
+      });
 
-    window.annyang.addCallback("result", (phrases) => {
-      const spokenText = phrases[0];
-
-      // 🔥 AUTO-SEND VOICE MESSAGE
-      setMessages((prev) => [
-        ...prev,
-        { from: "user", text: spokenText },
-        { from: "bot", text: "I received: " + spokenText },
-      ]);
-
-      setInput("");
+      setIsListening(true);
+    } else {
       stopListening();
-    });
+    }
+  };
 
-    setIsListening(true);
-  } else {
-    // STOP listening
-    stopListening();
-  }
-};
+  /* ---------------- UI ---------------- */
 
   return (
     <>
-      {/* Floating Icon */}
+      {/* Floating icon */}
       <div className="chatbot-icon" onClick={toggleChat}>
         <img src="/bot.jpeg" alt="bot" />
       </div>
 
-      {/* Chatbot Box */}
       {isOpen && (
-        <div className="chatbot">
+        <div className={`chatbot ${isFullscreen ? "fullscreen" : ""}`}>
           {/* Header */}
           <div className="chat-header">
             <span>CHATBOT</span>
 
             <div className="header-icons">
-              <i className="bi bi-x-lg header-icon" onClick={toggleChat}></i>
+              <i
+                className={`bi ${
+                  isFullscreen
+                    ? "bi-fullscreen-exit"
+                    : "bi-arrows-fullscreen"
+                } header-icon`}
+                title="Toggle fullscreen"
+                onClick={toggleFullscreen}
+              ></i>
+
+              <i
+                className="bi bi-x-lg header-icon"
+                title="Close"
+                onClick={toggleChat}
+              ></i>
             </div>
           </div>
 
@@ -126,8 +156,17 @@ function Chatbot() {
             ))}
           </div>
 
-          {/* Input */}
+          {/* Input bar */}
           <div className="chat-input">
+            <select
+              value={os}
+              onChange={(e) => setOs(e.target.value)}
+              className="os-select"
+            >
+              <option value="linux">Linux</option>
+              <option value="windows">Windows</option>
+            </select>
+
             <input
               type="text"
               placeholder="Ask Chatbot..."
@@ -137,14 +176,17 @@ function Chatbot() {
             />
 
             <button
-                className={`mic-btn ${isListening ? "listening" : ""}`}
-                onClick={toggleListening}
+              className={`mic-btn ${isListening ? "listening" : ""}`}
+              onClick={toggleListening}
             >
-                <i className={`bi ${isListening ? "bi-mic-mute-fill" : "bi-mic-fill"}`}></i>
+              <i
+                className={`bi ${
+                  isListening ? "bi-mic-mute-fill" : "bi-mic-fill"
+                }`}
+              ></i>
             </button>
 
-
-            <button className="send-btn" onClick={sendMsg}>
+            <button className="send-btn" onClick={() => sendMsg()}>
               <i className="bi bi-send-fill"></i>
             </button>
           </div>
