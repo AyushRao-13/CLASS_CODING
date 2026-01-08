@@ -40,3 +40,10 @@ plt.tile("Seaborn Histogram")
 plt.show()
 
 #SCIPY LIBRARY
+from scipy import stats
+
+data = [10,20,30,40,50]
+
+print("Mean: ", stats.mean(data))
+print("Median:  ", stats.scoreatpercentile(data,50))
+print("Mode: ", stats.mode(data))
