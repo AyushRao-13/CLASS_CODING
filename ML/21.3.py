@@ -8,8 +8,8 @@ from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
 
 df =  pd.read_excel('E:\\Users\\Dell\\Documents\\w1.xlsx')
-X = df[['Distance']]      
-y = df['Time_Taken']      
+X = df[['Distance(In km)']]      
+y = df['Time_Taken(In Hours)']      
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
